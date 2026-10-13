@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import { generateDefaultSeo } from 'next-seo/pages';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Toaster } from 'sonner';
 import { ThemeProvider } from 'styled-components';
 import Layout from '../components/Layout';
@@ -13,8 +13,8 @@ import nextSeoConfig from '../lib/next-seo.config';
 
 function AppFrame({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const { theme, language } = usePreferences();
-  const [systemDark, setSystemDark] = useState(false);
+  const { theme, language, preferencesLoaded } = usePreferences();
+  const [systemDark, setSystemDark] = useState(() => typeof document !== 'undefined' && document.documentElement.dataset.themeMode === 'dark');
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     const update = () => setSystemDark(media.matches);
@@ -22,6 +22,13 @@ function AppFrame({ Component, pageProps }: AppProps) {
     media.addEventListener?.('change', update);
     return () => media.removeEventListener?.('change', update);
   }, []);
+  useLayoutEffect(() => {
+    if (!preferencesLoaded) return;
+    const prefersDark = theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const resolvedDark = theme === 'dark' || prefersDark;
+    document.documentElement.dataset.themeChoice = theme;
+    document.documentElement.dataset.themeMode = resolvedDark ? 'dark' : 'light';
+  }, [theme, systemDark, preferencesLoaded]);
   useEffect(() => {
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') void navigator.serviceWorker.register('/sw.js').catch(() => undefined);
   }, []);

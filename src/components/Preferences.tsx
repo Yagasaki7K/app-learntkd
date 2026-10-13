@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useMemo, useState } fr
 
 export type Language = 'en' | 'pt-BR';
 export type ThemeChoice = 'system' | 'light' | 'dark';
-type Preferences = { language: Language; setLanguage: (language: Language) => void; theme: ThemeChoice; setTheme: (theme: ThemeChoice) => void };
+type Preferences = { language: Language; setLanguage: (language: Language) => void; theme: ThemeChoice; setTheme: (theme: ThemeChoice) => void; preferencesLoaded: boolean };
 const PreferenceContext = createContext<Preferences | null>(null);
 
 export function PreferenceProvider({ children }: { children: ReactNode }) {
@@ -31,7 +31,7 @@ export function PreferenceProvider({ children }: { children: ReactNode }) {
     if (!preferencesLoaded) return;
     try { localStorage.setItem('tkd-theme', theme); } catch { /* Storage can be unavailable in private contexts. */ }
   }, [theme, preferencesLoaded]);
-  const value = useMemo(() => ({ language, setLanguage, theme, setTheme }), [language, theme]);
+  const value = useMemo(() => ({ language, setLanguage, theme, setTheme, preferencesLoaded }), [language, theme, preferencesLoaded]);
   return <PreferenceContext.Provider value={value}>{children}</PreferenceContext.Provider>;
 }
 
