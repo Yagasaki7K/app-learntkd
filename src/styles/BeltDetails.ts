@@ -14,14 +14,14 @@ const BeltDetails = styled.div`
   h2 { font-size: 15px; margin: 0 0 5px; }
   .section p { margin: 0; color: ${({ theme }) => theme.muted}; }
   .techniques { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-  .technique { border: 1px solid ${({ theme }) => theme.border}; border-radius: 8px; padding: 10px 12px; }
+  .technique { min-width: 0; border: 1px solid ${({ theme }) => theme.border}; border-radius: 8px; padding: 10px 12px; overflow-wrap: anywhere; }
   .technique strong { display: block; font-size: 14px; }
   .technique span { color: ${({ theme }) => theme.muted}; font-size: 12px; }
   .next { display: inline-flex; color: ${({ theme }) => theme.accent}; font-weight: 700; margin-top: 12px; }
   @media (max-width: 1440px) { width: min(920px, calc(100% - 48px)); }
   @media (max-width: 1024px) { margin-top: 35px; }
   @media (max-width: 768px) { width: min(100% - 36px, 680px); .banner { padding: 24px; } .section { padding: 20px 24px; } }
-  @media (max-width: 480px) { width: calc(100% - 28px); margin-top: 24px; .banner { gap: 14px; padding: 18px; } .swatch { width: 48px; height: 48px; flex-basis: 48px; } .section { padding: 17px 18px; } .techniques { grid-template-columns: 1fr; } }
-  @media (max-width: 390px) { width: calc(100% - 24px); .section { padding: 15px; } }
+  @media (max-width: 480px) { width: calc(100% - 24px); margin-top: 24px; .banner { gap: 14px; padding: 18px; } .swatch { width: 48px; height: 48px; flex-basis: 48px; } .section { padding: 17px 18px; } .techniques { grid-template-columns: 1fr; } }
+  @media (max-width: 360px) { .banner { gap: 11px; padding: 14px; } .section { padding: 13px; } }
 `;
 export default BeltDetails;

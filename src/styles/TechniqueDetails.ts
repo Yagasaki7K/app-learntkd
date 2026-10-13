@@ -11,7 +11,7 @@ const TechniqueDetails = styled.div`
   .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; padding-bottom: 23px; border-bottom: 1px solid ${({ theme }) => theme.border}; }
   button, .tag { display: inline-flex; align-items: center; border: 1px solid ${({ theme }) => theme.border}; border-radius: 8px; background: ${({ theme }) => theme.background}; padding: 8px 11px; cursor: pointer; }
   .tag { cursor: default; font-size: 12px; }
-  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-top: 20px; }
+  .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; padding-top: 20px; }
   h2 { font-size: 16px; margin: 0 0 5px; }
   .detail-grid p { margin: 0; color: ${({ theme }) => theme.muted}; }
   .pronunciation { margin-top: 23px; padding: 15px; background: ${({ theme }) => theme.accentSoft}; border-radius: 9px; }
@@ -19,7 +19,7 @@ const TechniqueDetails = styled.div`
   @media (max-width: 1440px) { width: min(920px, calc(100% - 48px)); }
   @media (max-width: 1024px) { margin-top: 35px; }
   @media (max-width: 768px) { width: min(100% - 36px, 680px); .panel { padding: 25px; } }
-  @media (max-width: 480px) { width: calc(100% - 28px); margin-top: 25px; .panel { padding: 19px; } .detail-grid { grid-template-columns: 1fr; gap: 18px; } }
-  @media (max-width: 390px) { width: calc(100% - 24px); .panel { padding: 16px; } }
+  @media (max-width: 480px) { width: calc(100% - 24px); margin-top: 25px; .panel { padding: 18px; } .detail-grid { grid-template-columns: 1fr; gap: 18px; } h1 { font-size: clamp(34px, 11vw, 42px); } }
+  @media (max-width: 360px) { .panel { padding: 14px; } .hangul { font-size: 25px; } .actions { gap: 7px; } button, .tag { padding: 8px; font-size: 12px; } }
 `;
 export default TechniqueDetails;

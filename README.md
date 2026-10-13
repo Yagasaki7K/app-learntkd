@@ -16,11 +16,13 @@ Learn Taekwondo is a Next.js web application that serves as a study guide for Wo
 - **Dark and light mode** — follows device preference, overridable in Settings
 - **Language switch** — English and Portuguese, with automatic detection from the system
 - **PWA** — installable and works offline after first load
+- **Social previews** — English Open Graph and Twitter/X metadata with a branded 1200 × 630 preview image
 - **Multi-platform build** — web, desktop (Pake), and Android APK (Nitron)
 
 ## Tech Stack
 
 - Next.js (Pages Router)
+- next-seo (search and social metadata)
 - TypeScript
 - styled-components
 - sonner (toasts)
@@ -54,6 +56,17 @@ bun run dev
 
 Open `http://localhost:3000`.
 
+## Downloads
+
+- [Open the web app](https://learntkd.vercel.app)
+- [Windows portable app (.exe)](https://github.com/Yagasaki7K/app-learntkd/releases/latest/download/Learn-Taekwondo.exe)
+- [Windows installer (.msi)](https://github.com/Yagasaki7K/app-learntkd/releases/latest/download/Learn-Taekwondo.msi)
+- [Linux Debian package (.deb)](https://github.com/Yagasaki7K/app-learntkd/releases/latest/download/learn-taekwondo.deb)
+- [Linux AppImage](https://github.com/Yagasaki7K/app-learntkd/releases/latest/download/learn-taekwondo.AppImage)
+- [Android package (.apk)](https://github.com/Yagasaki7K/app-learntkd/releases/latest/download/learn-taekwondo.apk)
+
+Desktop and Android downloads are published as assets on the [latest GitHub release](https://github.com/Yagasaki7K/app-learntkd/releases/latest).
+
 ## Build Targets
 
 **Web / PWA**
@@ -63,6 +76,8 @@ bun run build
 ```
 
 Output is a static site under `out/`. Deployable to Vercel, Netlify, or any static host.
+
+Search and share metadata is configured in `src/lib/next-seo.config.ts`. The Open Graph and Twitter/X preview image is `public/social-preview.png`.
 
 **Desktop (Pake)**
 

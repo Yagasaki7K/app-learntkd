@@ -12,6 +12,6 @@ export default class MyDocument extends Document {
     } finally { sheet.seal(); }
   }
   render() {
-    return <Html lang="pt-BR"><Head><meta name="theme-color" content="#f7f7f5" /><meta name="description" content="Taekwondo study companion for WT techniques, belts and terminology." /><link rel="manifest" href="/manifest.json" /><link rel="icon" href="/icon.svg" /></Head><body><Main /><NextScript /></body></Html>;
+    return <Html lang="en"><Head /><body><Main /><NextScript /></body></Html>;
   }
 }

@@ -24,7 +24,7 @@ const TechniquesDetails = styled.div`
   @media (max-width: 1440px) { width: min(1160px, calc(100% - 48px)); }
   @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .filters { grid-template-columns: 1.5fr 1fr 1fr; } }
   @media (max-width: 768px) { width: min(100% - 36px, 680px); .filters { grid-template-columns: 1fr 1fr; } .filters input { grid-column: 1 / -1; } }
-  @media (max-width: 480px) { width: calc(100% - 28px); margin-top: 28px; .grid { grid-template-columns: 1fr; } .filters { padding: 10px; gap: 8px; } }
-  @media (max-width: 390px) { width: calc(100% - 24px); .card { padding: 16px; } }
+  @media (max-width: 480px) { width: calc(100% - 24px); margin-top: 28px; .grid { grid-template-columns: 1fr; } .filters { padding: 10px; gap: 8px; } }
+  @media (max-width: 360px) { .filters { grid-template-columns: 1fr; } .filters input { grid-column: auto; } .card { padding: 14px; } }
 `;
 export default TechniquesDetails;

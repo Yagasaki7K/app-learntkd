@@ -12,6 +12,8 @@ export default function Home({ belts, techniques }: Props) {
   const { language } = usePreferences();
   const pt = language === 'pt-BR';
   const featured = techniques[0];
+  const category = pt ? ({ kick: 'Chute', strike: 'Golpe', block: 'Defesa', stance: 'Base', 'self-defense': 'Defesa pessoal' } as Record<string, string>)[featured.category] : ({ kick: 'Kick', strike: 'Strike', block: 'Block', stance: 'Stance', 'self-defense': 'Self-defense' } as Record<string, string>)[featured.category];
+  const level = pt ? featured.level === 'beginner' ? 'iniciante' : featured.level === 'intermediate' ? 'intermediário' : 'avançado' : featured.level;
   return <HomeDetails>
     <section className="hero">
       <div className="hero-copy"><span className="eyebrow">{pt ? 'Companheiro de estudo WT' : 'WT study companion'}</span>
@@ -20,7 +22,7 @@ export default function Home({ belts, techniques }: Props) {
         <div className="actions"><Link className="button primary" href="/techniques/">{pt ? 'Explorar técnicas' : 'Explore techniques'}</Link><Link className="button" href="/belts/">{pt ? 'Ver progressão de faixas' : 'View belt progression'}</Link></div>
       </div>
       <aside className="hero-card"><span className="eyebrow">{pt ? 'Hoje no dojang' : 'Today in the dojang'}</span><h2>{pt ? 'Técnica para revisar' : 'Technique to revisit'}</h2>
-        <div className="meta">{featured.category} · {pt ? 'iniciante' : featured.level}</div><h3>{pt ? featured.portuguese : featured.english}</h3><p>{featured.hangul} · {featured.romanji}</p>
+        <div className="meta">{category} · {level}</div><h3>{pt ? featured.portuguese : featured.english}</h3><p>{featured.hangul} · {featured.romanji}</p>
         <div className="progress" aria-label={pt ? 'Progressão de faixas' : 'Belt progression'}>{belts.map((belt) => <span key={belt.slug} title={pt ? belt.namePt : belt.name} style={{ background: colors[belt.color] || '#fff', borderTop: belt.tip !== 'None' ? `3px solid ${colors[belt.tip] || '#222'}` : undefined }} />)}</div>
         <div className="actions"><Link className="button" href={`/techniques/${featured.slug}/`}>{pt ? 'Abrir técnica' : 'Open technique'}</Link></div>
       </aside>

@@ -43,7 +43,7 @@ export type Belt = {
   html: string;
 };
 
-export type ContentPage = { title: string; html: string; htmlEnglish: string; htmlPortuguese: string; plain: string };
+export type ContentPage = { title: string; html: string; htmlEnglish: string; htmlPortuguese: string; plain: string; plainEnglish: string; plainPortuguese: string };
 
 function readMarkdownFiles(directory: string): string[] {
   return fs.readdirSync(directory).filter((file) => file.endsWith('.md')).sort();
@@ -100,10 +100,14 @@ export function getMarkdownPage(folder: 'grading' | 'hierarchy' | 'terminology',
   const source = fs.readFileSync(path.join(root, folder, file), 'utf8');
   const title = source.match(/^# (.+)$/m)?.[1] || folder;
   const body = source.replace(/^# .+\r?\n/m, '');
-  const english = body.match(/^## English\r?\n([\s\S]*?)(?=^## Português\s*$|$)/m)?.[1];
+  const english = body.match(/^## English\r?\n([\s\S]*?)(?=^## Português\s*$|$)/m)?.[1] || '';
   const portuguese = body.match(/^## Português\r?\n([\s\S]*)$/m)?.[1];
-  const htmlEnglish = marked.parse(english || body) as string;
-  const htmlPortuguese = marked.parse(portuguese || body) as string;
-  return { title, html: htmlEnglish, htmlEnglish, htmlPortuguese, plain: source.replace(/[#*|`>-]/g, ' ').replace(/\s+/g, ' ') };
+  const portugueseContent = portuguese || '';
+  const plain = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[#*|`>-]/g, ' ').replace(/\s+/g, ' ').trim();
+  const htmlEnglish = marked.parse(english) as string;
+  const htmlPortuguese = marked.parse(portugueseContent) as string;
+  const plainEnglish = plain(english);
+  const plainPortuguese = plain(portugueseContent);
+  return { title, html: htmlEnglish, htmlEnglish, htmlPortuguese, plain: `${plainEnglish} ${plainPortuguese}`.trim(), plainEnglish, plainPortuguese };
 }
 
