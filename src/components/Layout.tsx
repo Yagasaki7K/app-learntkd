@@ -18,8 +18,13 @@ const Shell = styled.div`
   .search input { width: 175px; border: 1px solid ${({ theme }) => theme.border}; border-radius: 8px; padding: 8px 10px; color: ${({ theme }) => theme.text}; background: ${({ theme }) => theme.surface}; font-size: 12px; outline: none; }
   .search button { border: 0; border-radius: 8px; padding: 8px 11px; color: ${({ theme }) => theme.background}; background: ${({ theme }) => theme.text}; font-size: 12px; font-weight: 700; cursor: pointer; }
   main { flex: 1; }
-  footer { border-top: 1px solid ${({ theme }) => theme.border}; }
-  .footer-inner { width: min(1160px, calc(100% - 48px)); padding: 22px 0; margin: auto; display: flex; justify-content: space-between; gap: 15px; color: ${({ theme }) => theme.muted}; font-size: 12px; }
+  footer { border-top: 1px solid ${({ theme }) => theme.border}; background: ${({ theme }) => theme.surface}; }
+  .footer-inner { width: min(1160px, calc(100% - 48px)); padding: 24px 0; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .8fr); align-items: start; gap: 24px; color: ${({ theme }) => theme.muted}; font-size: 12px; line-height: 1.7; }
+  .footer-credit { display: grid; gap: 4px; }
+  .footer-credit strong, .footer-note strong { color: ${({ theme }) => theme.text}; font-size: 13px; font-weight: 700; }
+  .footer-credit a { color: ${({ theme }) => theme.accent}; font-weight: 650; text-decoration: none; }
+  .footer-credit a:hover { text-decoration: underline; }
+  .footer-note { border-left: 2px solid ${({ theme }) => theme.border}; padding-left: 16px; }
   @media (max-width: 1440px) { .header-inner { width: min(1240px, calc(100% - 48px)); } }
   @media (max-width: 1024px) {
     .header-inner { width: calc(100% - 36px); display: grid; grid-template-columns: minmax(0, .9fr) auto minmax(0, 1.2fr); gap: 8px; padding: 10px 0; }
@@ -34,7 +39,8 @@ const Shell = styled.div`
     .search button { flex: 0 0 auto; padding: 8px 9px; }
   }
   @media (max-width: 768px) { .header-inner, .footer-inner { width: calc(100% - 28px); } }
-  @media (max-width: 480px) { .header-inner, .footer-inner { width: calc(100% - 24px); } .footer-inner { flex-direction: column; gap: 3px; } }
+  @media (max-width: 600px) { .footer-inner { grid-template-columns: 1fr; gap: 14px; } .footer-note { border-left: 0; border-top: 1px solid ${({ theme }) => theme.border}; padding: 12px 0 0; } }
+  @media (max-width: 480px) { .header-inner, .footer-inner { width: calc(100% - 24px); } }
   @media (max-width: 360px) { .header-inner { grid-template-columns: minmax(0, .8fr) 36px minmax(0, 1.2fr); gap: 6px; } .mark { width: 25px; height: 25px; } .brand { gap: 6px; font-size: 13px; } .menu-toggle { width: 36px; height: 36px; } .search { gap: 4px; } .search input { padding: 7px 6px; font-size: 11px; } .search button { padding: 7px 8px; font-size: 11px; } }
 `;
 
@@ -71,6 +77,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       </div>
     </header>
     <main>{children}</main>
-    <footer><div className="footer-inner"><span>{pt ? 'Guia de estudo WT • conteúdo para revisão' : 'WT study guide • content for review'}</span><span>{pt ? 'Confirme os requisitos com seu instrutor.' : 'Confirm requirements with your instructor.'}</span></div></footer>
+    <footer><div className="footer-inner">
+      <div className="footer-credit"><strong>{pt ? 'Guia de Estudo com base na World Taekwondo' : 'Study Guide based on World Taekwondo'}</strong><span>{pt ? 'Conteúdo para Revisão • Desenvolvido por ' : 'Content for Review • Developed by '}<a href="https://github.com/Yagasaki7K" target="_blank" rel="noreferrer">Yagasaki7K</a></span></div>
+      <div className="footer-note"><strong>{pt ? 'Uma orientação para seus estudos' : 'A guide for your study'}</strong><div>{pt ? 'Confirme as informações com seu instrutor; o conteúdo pode variar para cada academia.' : 'Confirm the information with your instructor; content may vary by academy.'}</div></div>
+    </div></footer>
   </Shell>;
 }
