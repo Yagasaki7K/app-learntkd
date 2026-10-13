@@ -70,7 +70,7 @@ Output is a static site under `out/`. Deployable to Vercel, Netlify, or any stat
 bun run build:desktop
 ```
 
-The script runs Pake CLI through `bunx`. Install Rust and the native prerequisites for the target OS first; see [Pake's CLI guide](https://github.com/tw93/Pake/blob/main/docs/cli-usage.md) and [Tauri's Linux prerequisites](https://v2.tauri.app/start/prerequisites/). On Linux it creates `tkd-study.deb` and `tkd-study.AppImage`.
+The script runs Pake CLI through `bun x`. Install Rust and the native prerequisites for the target OS first; see [Pake's CLI guide](https://github.com/tw93/Pake/blob/main/docs/cli-usage.md) and [Tauri's Linux prerequisites](https://v2.tauri.app/start/prerequisites/). On Linux it creates `tkd-study.deb` and `tkd-study.AppImage`.
 
 To create the standalone Windows `.exe`, run this on Windows with Bun, Rust, and the Visual Studio Build Tools C++ workload installed:
 
