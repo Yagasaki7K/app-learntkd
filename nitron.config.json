@@ -1,13 +1,13 @@
 {
-  "name": "TKD Study",
-  "packageId": "com.tkdstudy.companion",
-  "version": "1.0.0",
-  "entry": "out/index.html",
-  "orientation": "portrait",
-  "statusBar": true,
-  "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"],
-  "icon": "./public/icon-512.png",
-  "network": { "cleartext": false },
-  "webview": { "backButton": "history", "clearCacheOnStart": false },
-  "splashScreen": { "backgroundColor": "#f7f7f5" }
+    "name": "Learn Taekwondo",
+    "packageId": "com.learntkd.yagasaki",
+    "version": "1.0.0",
+    "entry": "out/index.html",
+    "orientation": "portrait",
+    "statusBar": true,
+    "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"],
+    "icon": "./public/icon-512.png",
+    "network": { "cleartext": false },
+    "webview": { "backButton": "history", "clearCacheOnStart": false },
+    "splashScreen": { "backgroundColor": "#f7f7f5" }
 }
